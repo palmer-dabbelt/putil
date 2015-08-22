@@ -13,8 +13,14 @@ COMPILEOPTS += -Werror
 LANGUAGES   += c++
 COMPILEOPTS += -Isrc
 
+LANGUAGES   += bash
+
 LIBRARIES   += libputil-filesystem.so
 SOURCES     += libputil/filesystem.c++
 
 LIBEXECS    += putil/filesystem/mkdir_p
 SOURCES     += putil/filesystem/mkdir_p.c++
+TESTSRC     += single-noslash.bash
+TESTSRC     += single-slash.bash
+TESTSRC     += recursive-noslash.bash
+TESTSRC     += recursive-slash.bash
