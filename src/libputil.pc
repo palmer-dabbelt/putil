@@ -1,0 +1,5 @@
+Name: putil
+Description: Palmer's utility library
+Version: @@pconfigure_version@@
+Requires: libputil-filesystem
+URL: http://github.com/palmer-dabbelt/putil/

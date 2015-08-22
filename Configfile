@@ -15,8 +15,22 @@ COMPILEOPTS += -Isrc
 
 LANGUAGES   += bash
 
+LANGUAGES   += pkgconfig
+LINKOPTS    += -Sobj/proc/version-pc.sed
+
+GENERATE    += version.h
+GENERATE    += version-pc.sed
+
+# The whole library is only actually a pkg-config file
+LIBRARIES   += pkgconfig/libputil.pc
+SOURCES     += libputil.pc
+
+# Everything that touches the filesystem goes here
 LIBRARIES   += libputil-filesystem.so
 SOURCES     += libputil/filesystem.c++
+
+LIBRARIES   += pkgconfig/libputil-filesystem.pc
+SOURCES     += libputil-filesystem.pc
 
 LIBEXECS    += putil/filesystem/mkdir_p
 SOURCES     += putil/filesystem/mkdir_p.c++
