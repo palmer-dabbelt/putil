@@ -65,15 +65,6 @@ uint64_t datetime::unix(void) const
     return _unix;
 }
 
-const std::string datetime::unix_str(void) const
-{
-    char buffer[BUFFER_SIZE];
-    snprintf(buffer, BUFFER_SIZE, "%llu",
-	     (unsigned long long)_unix
-        );
-    return buffer;
-}
-
 const std::string datetime::ddmm(void) const
 {
     time_t time = _unix;

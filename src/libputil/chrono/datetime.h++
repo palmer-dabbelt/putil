@@ -56,10 +56,6 @@ namespace putil {
              * UNIX time. */
             uint64_t unix(void) const;
 
-            /* Returns the time as a string, which just contains the
-             * decimal representation of the UNIX time above. */
-            const std::string unix_str(void) const;
-
             /* Prints DD/MM, the day/month format. */
             const std::string ddmm(void) const;
 
