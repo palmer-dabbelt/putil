@@ -50,3 +50,19 @@ SOURCES     += libputil/chrono/datetime.c++
 
 LIBRARIES   += pkgconfig/libputil-chrono.pc
 SOURCES     += libputil-chrono.pc
+
+LIBEXECS    += putil/chrono/datetime/unix_seconds
+COMPILEOPTS += `ppkg-config gitdate++ --cflags`
+LINKOPTS    += `ppkg-config gitdate++ --libs`
+SOURCES     += putil/chrono/datetime/unix_seconds.c++
+TESTS       += 1772726757
+SOURCES     += random.bash
+TESTS       += 681016854
+SOURCES     += random.bash
+TESTS       += 788517355
+SOURCES     += random.bash
+TESTS       += 151335707
+SOURCES     += random.bash
+TESTS       += 2140411336
+SOURCES     += random.bash
+
