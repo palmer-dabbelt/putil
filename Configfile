@@ -66,3 +66,9 @@ SOURCES     += random.bash
 TESTS       += 2140411336
 SOURCES     += random.bash
 
+LIBEXECS    += putil/chrono/datetime/now
+COMPILEOPTS += `ppkg-config gitdate++ --cflags`
+LINKOPTS    += `ppkg-config gitdate++ --libs`
+SOURCES     += putil/chrono/datetime/now.c++
+TESTSRC     += now.bash
+
