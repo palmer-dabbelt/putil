@@ -1,0 +1,11 @@
+prefix=@@pconfigure_prefix@@
+exec_prefix=@@pconfigure_prefix@@
+libdir=${prefix}/@@pconfigure_libdir@@
+includedir=${prefix}/@@pconfigure_hdrdir@@
+
+Name: libputil-chrono
+Description: Palmer's time utility library
+Version: @@pconfigure_version@@
+Libs: -Wl,-rpath,${libdir} -L${libdir} -lputil-chrono
+Cflags: -I${includedir} 
+URL: http://github.com/palmer-dabbelt/putil/

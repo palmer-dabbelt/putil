@@ -1,5 +1,5 @@
 Name: putil
 Description: Palmer's utility library
 Version: @@pconfigure_version@@
-Requires: libputil-filesystem
+Requires: libputil-filesystem libputil-chrono
 URL: http://github.com/palmer-dabbelt/putil/

@@ -3,6 +3,11 @@ LANGUAGES   += h
 HEADERS     += libputil/filesystem.h++
 SOURCES     += libputil/filesystem.h++
 
+HEADERS     += libputil/chrono.h++
+SOURCES     += libputil/chrono.h++
+HEADERS     += libputil/chrono/datetime.h++
+SOURCES     += libputil/chrono/datetime.h++
+
 LANGUAGES   += c++
 COMPILEOPTS += -std=c++11
 COMPILEOPTS += -Wall
@@ -38,3 +43,10 @@ TESTSRC     += single-noslash.bash
 TESTSRC     += single-slash.bash
 TESTSRC     += recursive-noslash.bash
 TESTSRC     += recursive-slash.bash
+
+# These deal with handling time
+LIBRARIES   += libputil-chrono.so
+SOURCES     += libputil/chrono/datetime.c++
+
+LIBRARIES   += pkgconfig/libputil-chrono.pc
+SOURCES     += libputil-chrono.pc
