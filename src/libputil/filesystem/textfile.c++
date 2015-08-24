@@ -48,7 +48,7 @@ textfile::~textfile(void)
 
 void textfile::write(const std::string& data)
 {
-    if (fputs(data.c_str(), _file) != 0) {
+    if (fputs(data.c_str(), _file) < 0) {
         perror("unable to write to file");
         abort();
     }

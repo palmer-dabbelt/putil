@@ -50,6 +50,8 @@ TESTSRC     += recursive-slash.bash
 LIBEXECS    += putil/filesystem/textfile/write
 SOURCES     += putil/filesystem/textfile/write.c++
 TESTSRC     += nolines.bash
+TESTSRC     += emptyline.bash
+TESTSRC     += twolines.bash
 
 # These deal with handling time
 LIBRARIES   += libputil-chrono.so
