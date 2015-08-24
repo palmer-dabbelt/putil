@@ -60,7 +60,7 @@ const std::string datetime::gm(void) const
     return buffer;
 }
 
-uint64_t datetime::unix_seconds(void) const
+time_t datetime::unix_seconds(void) const
 {
     return _unix;
 }

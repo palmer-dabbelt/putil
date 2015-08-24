@@ -23,6 +23,7 @@
 
 #include <memory>
 #include <string>
+#include <time.h>
 
 namespace putil {
     namespace chrono {
@@ -54,7 +55,7 @@ namespace putil {
 
             /* Returns the time as an integer.  This is effectively just
              * UNIX time. */
-            uint64_t unix_seconds(void) const;
+            time_t unix_seconds(void) const;
 
             /* Prints DD/MM, the day/month format. */
             const std::string ddmm(void) const;
