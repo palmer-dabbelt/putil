@@ -47,6 +47,10 @@ TESTSRC     += single-slash.bash
 TESTSRC     += recursive-noslash.bash
 TESTSRC     += recursive-slash.bash
 
+LIBEXECS    += putil/filesystem/textfile/write
+SOURCES     += putil/filesystem/textfile/write.c++
+TESTSRC     += nolines.bash
+
 # These deal with handling time
 LIBRARIES   += libputil-chrono.so
 SOURCES     += libputil/chrono/datetime.c++
