@@ -34,7 +34,6 @@ int putil::filesystem::mkdirat_p(int dirfd, const std::string& path, mode_t m)
             continue;
 
         auto dirname = path.substr(0, i);
-        std::cerr << "Creating " << dirname << "\n";
         auto out = mkdirat(dirfd, dirname.c_str(), m);
         if (out == -1 && errno != EEXIST)
             return out;
