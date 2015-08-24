@@ -2,6 +2,8 @@ LANGUAGES   += h
 
 HEADERS     += libputil/filesystem.h++
 SOURCES     += libputil/filesystem.h++
+HEADERS     += libputil/filesystem/textfile.h++
+SOURCES     += libputil/filesystem/textfile.h++
 
 HEADERS     += libputil/chrono.h++
 SOURCES     += libputil/chrono.h++
@@ -33,6 +35,7 @@ SOURCES     += libputil.pc
 # Everything that touches the filesystem goes here
 LIBRARIES   += libputil-filesystem.so
 SOURCES     += libputil/filesystem.c++
+SOURCES     += libputil/filesystem/textfile.c++
 
 LIBRARIES   += pkgconfig/libputil-filesystem.pc
 SOURCES     += libputil-filesystem.pc

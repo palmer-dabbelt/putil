@@ -18,23 +18,38 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PUTIL__FILESYSTEM_H
-#define PUTIL__FILESYSTEM_H
+#include "textfile.h++"
+using namespace putil::filesystem;
 
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <string>
-
-namespace putil {
-    namespace filesystem {
-        /* Recursively creates a directory tree, much the same as
-         * 'mkdir -p'. */
-        int mkdir_p(const std::string& path, mode_t mode);
-        int mkdirat_p(int dirfd, const std::string& path, mode_t mode);
+static inline const char *mode2str(mode_t mode)
+{
+    switch (mode) {
+    case O_RDONLY:
+        return "r";
+    case O_WRONLY:
+        return "w";
+    case O_RDWR:
+        return "w+";
     }
+
+    return "";
 }
 
-#include "filesystem/textfile.h++"
+textfile::textfile(const std::string& filename, mode_t mode)
+    : _file(fopen(filename.c_str(), mode2str(mode)))
+{
+}
 
-#endif
+textfile::~textfile(void)
+{
+    if (_file != NULL)
+        fclose(_file);
+}
+
+void textfile::write(const std::string& data)
+{
+    if (fputs(data.c_str(), _file) != 0) {
+        perror("unable to write to file");
+        abort();
+    }
+}
