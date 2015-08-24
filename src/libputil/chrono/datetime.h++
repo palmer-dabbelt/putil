@@ -67,6 +67,10 @@ namespace putil {
              * UNIX time. */
             time_t unix_seconds(void) const;
 
+            /* Returns the time, scaled a a number of nanoseconds (not
+             * a residual). */
+            uint64_t unix_nanoseconds(void) const;
+
             /* Prints DD/MM, the day/month format. */
             const std::string ddmm(void) const;
 

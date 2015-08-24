@@ -85,6 +85,11 @@ time_t datetime::unix_seconds(void) const
     return _ts.tv_sec;
 }
 
+uint64_t datetime::unix_nanoseconds(void) const
+{
+    return _ts.tv_sec * (1000 * 1000 * 1000) + _ts.tv_nsec;
+}
+
 const std::string datetime::ddmm(void) const
 {
     time_t time = this->unix_seconds();
