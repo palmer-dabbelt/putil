@@ -35,10 +35,20 @@ namespace putil {
              * date. */
             int _error;
 
-            /* The canonical date format: UNIX time, stored in UTC. */
-            const uint64_t _unix;
+            /* The canonical date format: number of microseconds since
+             * the UNIX epoch. */
+            const struct timespec _ts;
+
+        private:
+            /* This is used internally to avoid loss of precision.
+             * Exposing this may expose the public API, which we don't
+             * want to do. */
+            datetime(const struct timespec& ts);
 
         public:
+            /* Copy a datetime from various formats. */
+            datetime(const std::shared_ptr<datetime>& dt);
+
             /* Parses the given string into a date. */
             datetime(const std::string to_parse);
 
@@ -61,8 +71,9 @@ namespace putil {
             const std::string ddmm(void) const;
 
         public:
-            /* Creates a new date that represents the time right now. */
-            static std::shared_ptr<datetime> now(void);
+            /* Creates a new date that represents the time right now,
+             * as provided by the given clock source. */
+            static datetime now(clockid_t id = CLOCK_REALTIME);
         };
     }
 }

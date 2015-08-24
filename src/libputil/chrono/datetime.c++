@@ -28,15 +28,35 @@ using namespace putil::chrono;
 #define BUFFER_SIZE 1024
 #endif
 
+static inline struct timespec unix2ts(const time_t t)
+{
+    struct timespec out;
+    out.tv_sec = t;
+    out.tv_nsec = 0;
+    return out;
+}
+
+datetime::datetime(const struct timespec& ts)
+    : _error(0),
+      _ts(ts)
+{
+}
+
+datetime::datetime(const std::shared_ptr<datetime>& dt)
+    : _error(dt->_error),
+      _ts(dt->_ts)
+{
+}
+
 datetime::datetime(const std::string to_parse)
     : _error(0),
-      _unix(gitdate::approxidate_careful(to_parse.c_str(), &_error))
+      _ts(unix2ts(gitdate::approxidate_careful(to_parse.c_str(), &_error)))
 {
 }
 
 const std::string datetime::local(void) const
 {
-    time_t time = _unix;
+    time_t time = this->unix_seconds();
 
     struct tm tm;
     localtime_r(&time, &tm);
@@ -49,7 +69,7 @@ const std::string datetime::local(void) const
 
 const std::string datetime::gm(void) const
 {
-    time_t time = _unix;
+    time_t time = this->unix_seconds();
 
     struct tm tm;
     gmtime_r(&time, &tm);
@@ -62,12 +82,12 @@ const std::string datetime::gm(void) const
 
 time_t datetime::unix_seconds(void) const
 {
-    return _unix;
+    return _ts.tv_sec;
 }
 
 const std::string datetime::ddmm(void) const
 {
-    time_t time = _unix;
+    time_t time = this->unix_seconds();
 
     struct tm tm;
     localtime_r(&time, &tm);
@@ -78,16 +98,14 @@ const std::string datetime::ddmm(void) const
     return buffer;
 }
 
-std::shared_ptr<datetime> datetime::now(void)
+datetime datetime::now(clockid_t id)
 {
-    time_t tod;
-    time(&tod);
+    struct timespec ts;
+    if (clock_gettime(id, &ts)) {
+        perror("clock_gettime() failed");
+        abort();
+    }
 
-    struct tm tm;
-    localtime_r(&tod, &tm);
-
-    char rfc_2822_date[BUFFER_SIZE];
-    strftime(rfc_2822_date, BUFFER_SIZE, "%a, %d %b %Y %T %z", &tm);
-
-    return std::make_shared<datetime>(rfc_2822_date);
+    return datetime(ts);
 }
+
