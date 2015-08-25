@@ -32,11 +32,14 @@ namespace putil {
     namespace filesystem {
         /* A wrapper for text files that allows them to be somewhat
          * easily read. */
-        class textfile: public file {
+        class textfile {
+        private:
+            file _file;
+
         public:
             /* Opens a text file, given the path to that file. */
             textfile(const std::string& filename, mode_t mode = 0777)
-                : file(filename, mode)
+                : _file(filename, mode)
                 {}
 
         public:

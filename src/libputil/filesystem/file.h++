@@ -30,6 +30,12 @@ namespace putil {
     namespace filesystem {
         /* Represents a native target file object. */
         class file {
+            /* Most classes should't use this at all, so pretty much
+             * all the methods are going be protected.  If you're
+             * thinking of this then you should probably go and use
+             * one of the inner classes instead. */
+            friend class textfile;
+
         private:
             int _fd;
             FILE *_file;

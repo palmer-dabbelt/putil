@@ -21,23 +21,9 @@
 #include "textfile.h++"
 using namespace putil::filesystem;
 
-static inline const char *mode2str(mode_t mode)
-{
-    switch (mode) {
-    case O_RDONLY:
-        return "r";
-    case O_WRONLY:
-        return "w";
-    case O_RDWR:
-        return "w+";
-    }
-
-    return "";
-}
-
 void textfile::write(const std::string& data)
 {
-    if (this->fputs(data.c_str()) < 0) {
+    if (_file.fputs(data.c_str()) < 0) {
         perror("unable to write to file");
         abort();
     }
