@@ -21,6 +21,8 @@
 #ifndef PUTIL__FILESYSTEM__TEXTFILE_HXX
 #define PUTIL__FILESYSTEM__TEXTFILE_HXX
 
+#include "file.h++"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -30,16 +32,15 @@ namespace putil {
     namespace filesystem {
         /* A wrapper for text files that allows them to be somewhat
          * easily read. */
-        class textfile {
-        private:
-            FILE *_file;
-
+        class textfile: public file {
         public:
             /* Opens a text file, given the path to that file. */
-            textfile(const std::string& filename, mode_t mode = O_RDONLY);
+            textfile(const std::string& filename, mode_t mode = O_RDONLY)
+                : file(filename, mode)
+                {}
 
         public:
-            ~textfile(void);
+            ~textfile(void) {}
 
         public:
             /* Writes a line to this file at the current position. */

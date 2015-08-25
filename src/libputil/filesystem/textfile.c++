@@ -35,20 +35,9 @@ static inline const char *mode2str(mode_t mode)
     return "";
 }
 
-textfile::textfile(const std::string& filename, mode_t mode)
-    : _file(fopen(filename.c_str(), mode2str(mode)))
-{
-}
-
-textfile::~textfile(void)
-{
-    if (_file != NULL)
-        fclose(_file);
-}
-
 void textfile::write(const std::string& data)
 {
-    if (fputs(data.c_str(), _file) < 0) {
+    if (this->fputs(data.c_str()) < 0) {
         perror("unable to write to file");
         abort();
     }

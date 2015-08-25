@@ -18,27 +18,37 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PUTIL__FILESYSTEM_H
-#define PUTIL__FILESYSTEM_H
+#ifndef LIBPUTIL__FILESYSTEM__FILE_HXX
+#define LIBPUTIL__FILESYSTEM__FILE_HXX
 
-#include <fcntl.h>
-#include <sys/file.h>
-#include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <string>
 
 namespace putil {
     namespace filesystem {
-        /* Recursively creates a directory tree, much the same as
-         * 'mkdir -p'. */
-        int mkdir_p(const std::string& path, mode_t mode);
-        int mkdirat_p(int dirfd, const std::string& path, mode_t mode);
+        /* Represents a native target file object. */
+        class file {
+        private:
+            int _fd;
+            FILE *_file;
 
-        /* Locks a file (or directory) by name. */
-        int flock(const std::string& path, int operation);
+        public:
+            /* Opens a file by a path, which is relative if it doesn't
+             * start with a '/'. */
+            file(const std::string& name, mode_t mode);
+
+            ~file(void);
+
+        protected:
+            /* man 2 */
+
+            /* man 3 */
+            int fputs(const std::string& s);
+            
+        };
     }
 }
-
-#include "filesystem/textfile.h++"
 
 #endif

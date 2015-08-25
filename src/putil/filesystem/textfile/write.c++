@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     if (argc != 2)
         abort();
 
-    auto file = putil::filesystem::textfile(argv[1], O_WRONLY);
+    auto file = putil::filesystem::textfile(argv[1], 0770);
 
     char *lineptr;
     size_t n;

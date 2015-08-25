@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) 2015 Palmer Dabbelt
  *   <palmer@dabbelt.com>
  *
@@ -18,27 +18,33 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PUTIL__FILESYSTEM_H
-#define PUTIL__FILESYSTEM_H
+#include "file.h++"
+using namespace putil::filesystem;
 
-#include <fcntl.h>
-#include <sys/file.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <string>
 
-namespace putil {
-    namespace filesystem {
-        /* Recursively creates a directory tree, much the same as
-         * 'mkdir -p'. */
-        int mkdir_p(const std::string& path, mode_t mode);
-        int mkdirat_p(int dirfd, const std::string& path, mode_t mode);
+file::file(const std::string& filename, mode_t mode)
+{
+    _fd = open(filename.c_str(), O_RDWR | O_CREAT, mode);
+    if (_fd < 0) {
+        perror("unable to open fd");
+        abort();
+    }
 
-        /* Locks a file (or directory) by name. */
-        int flock(const std::string& path, int operation);
+    _file = fdopen(_fd, "w+");
+    if (_file == NULL) {
+        perror("unable to open fd");
+        abort();
     }
 }
 
-#include "filesystem/textfile.h++"
+file::~file(void)
+{
+    fclose(_file);
+    _file = NULL;
+    _fd = -1;
+}
 
-#endif
+int file::fputs(const std::string& s)
+{
+    return ::fputs(s.c_str(), _file);
+}

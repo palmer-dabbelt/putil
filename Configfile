@@ -2,6 +2,8 @@ LANGUAGES   += h
 
 HEADERS     += libputil/filesystem.h++
 SOURCES     += libputil/filesystem.h++
+HEADERS     += libputil/filesystem/file.h++
+SOURCES     += libputil/filesystem/file.h++
 HEADERS     += libputil/filesystem/textfile.h++
 SOURCES     += libputil/filesystem/textfile.h++
 
