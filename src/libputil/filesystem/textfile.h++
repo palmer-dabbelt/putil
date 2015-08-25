@@ -23,11 +23,6 @@
 
 #include "file.h++"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <string>
-
 namespace putil {
     namespace filesystem {
         /* A wrapper for text files that allows them to be somewhat
