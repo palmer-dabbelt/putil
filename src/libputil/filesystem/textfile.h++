@@ -35,7 +35,7 @@ namespace putil {
         class textfile: public file {
         public:
             /* Opens a text file, given the path to that file. */
-            textfile(const std::string& filename, mode_t mode = O_RDONLY)
+            textfile(const std::string& filename, mode_t mode = 0777)
                 : file(filename, mode)
                 {}
 
