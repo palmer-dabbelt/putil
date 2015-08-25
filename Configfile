@@ -35,7 +35,6 @@ SOURCES     += libputil.pc
 # Everything that touches the filesystem goes here
 LIBRARIES   += libputil-filesystem.so
 SOURCES     += libputil/filesystem.c++
-SOURCES     += libputil/filesystem/textfile.c++
 
 LIBRARIES   += pkgconfig/libputil-filesystem.pc
 SOURCES     += libputil-filesystem.pc
@@ -55,7 +54,7 @@ TESTSRC     += twolines.bash
 
 # These deal with handling time
 LIBRARIES   += libputil-chrono.so
-SOURCES     += libputil/chrono/datetime.c++
+SOURCES     += libputil/chrono.c++
 
 LIBRARIES   += pkgconfig/libputil-chrono.pc
 SOURCES     += libputil-chrono.pc
