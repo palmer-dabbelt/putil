@@ -18,25 +18,12 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PUTIL__FILESYSTEM_H
-#define PUTIL__FILESYSTEM_H
+#include <libputil/filesystem/lockfile.h++>
 
-#include <fcntl.h>
-#include <sys/file.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <string>
+int main(int argc, const char **argv)
+{
+    if (argc != 2)
+        abort();
 
-namespace putil {
-    namespace filesystem {
-        /* Recursively creates a directory tree, much the same as
-         * 'mkdir -p'. */
-        int mkdir_p(const std::string& path, mode_t mode);
-        int mkdirat_p(int dirfd, const std::string& path, mode_t mode);
-    }
+    auto lock = putil::filesystem::lockfile::rdlock(argv[1]);
 }
-
-#include "filesystem/lockfile.h++"
-#include "filesystem/textfile.h++"
-
-#endif

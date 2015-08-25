@@ -35,6 +35,7 @@ namespace putil {
              * thinking of this then you should probably go and use
              * one of the inner classes instead. */
             friend class textfile;
+            friend class lockfile;
 
         private:
             int _fd;
@@ -49,6 +50,7 @@ namespace putil {
 
         protected:
             /* man 2 */
+            int flock(int operation);
 
             /* man 3 */
             int fputs(const std::string& s);

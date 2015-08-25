@@ -54,6 +54,11 @@ TESTSRC     += nolines.bash
 TESTSRC     += emptyline.bash
 TESTSRC     += twolines.bash
 
+LIBEXECS    += putil/filesystem/lockfile/shared
+SOURCES     += putil/filesystem/lockfile/shared.c++
+TESTSRC     += shared.bash
+TESTSRC     += exclusive.bash
+
 # These deal with handling time
 LIBRARIES   += libputil-chrono.so
 SOURCES     += libputil/chrono.c++

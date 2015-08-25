@@ -19,6 +19,7 @@
  */
 
 #include "file.h++"
+#include <sys/file.h>
 using namespace putil::filesystem;
 
 
@@ -42,6 +43,11 @@ file::~file(void)
     fclose(_file);
     _file = NULL;
     _fd = -1;
+}
+
+int file::flock(int operation)
+{
+    return ::flock(_fd, operation);
 }
 
 int file::fputs(const std::string& s)
