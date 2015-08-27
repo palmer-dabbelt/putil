@@ -4,6 +4,8 @@ HEADERS     += libputil/filesystem.h++
 SOURCES     += libputil/filesystem.h++
 HEADERS     += libputil/filesystem/file.h++
 SOURCES     += libputil/filesystem/file.h++
+HEADERS     += libputil/filesystem/lockfile.h++
+SOURCES     += libputil/filesystem/lockfile.h++
 HEADERS     += libputil/filesystem/textfile.h++
 SOURCES     += libputil/filesystem/textfile.h++
 
