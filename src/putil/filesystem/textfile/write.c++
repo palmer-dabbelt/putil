@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 
     auto file = putil::filesystem::textfile(argv[1], 0770);
 
-    char *lineptr;
+    char *lineptr = NULL;
     size_t n;
     while (getline(&lineptr, &n, stdin) > 0)
         file.write(lineptr);
