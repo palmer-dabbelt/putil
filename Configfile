@@ -14,6 +14,9 @@ SOURCES     += libputil/chrono.h++
 HEADERS     += libputil/chrono/datetime.h++
 SOURCES     += libputil/chrono/datetime.h++
 
+HEADERS     += libputil/collection.h++
+SOURCES	    += libputil/collection.h++
+
 LANGUAGES   += c++
 COMPILEOPTS += -std=c++11
 COMPILEOPTS += -Wall
@@ -89,3 +92,6 @@ LINKOPTS    += `ppkg-config gitdate++ --libs`
 SOURCES     += putil/chrono/datetime/now.c++
 TESTSRC     += now.bash
 
+LIBEXECS    += putil/collection/map
+SOURCES     += putil/collection/map.c++
+TESTSRC     += test.bash
