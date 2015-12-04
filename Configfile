@@ -66,6 +66,8 @@ TESTSRC     += exclusive.bash
 
 # These deal with handling time
 LIBRARIES   += libputil-chrono.so
+COMPILEOPTS += `ppkg-config gitdate++ --cflags`
+LINKOPTS    += `ppkg-config gitdate++ --libs`
 SOURCES     += libputil/chrono.c++
 
 LIBRARIES   += pkgconfig/libputil-chrono.pc
