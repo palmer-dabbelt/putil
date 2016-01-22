@@ -7,6 +7,6 @@ Name: libputil-chrono
 Description: Palmer's time utility library
 Version: @@pconfigure_version@@
 Requires: gitdate++
-Libs: -Wl,-rpath,${libdir} -L${libdir} -lputil-chrono
+Libs: -Wl,-rpath,${libdir} -L${libdir} -lputil-chrono -lrt
 Cflags: -I${includedir} 
 URL: http://github.com/palmer-dabbelt/putil/
