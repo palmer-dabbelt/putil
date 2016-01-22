@@ -18,26 +18,24 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "textfile.h++"
-using namespace putil::filesystem;
+#include <libputil/filesystem/textfile.h++>
 
-#ifndef LINE_MAX
-#define LINE_MAX 1024
-#endif
-
-void textfile::write(const std::string& data)
+int main(int argc, char **argv)
 {
-    if (_file.fputs(data.c_str()) < 0) {
-        perror("unable to write to file");
+    if (argc != 2)
         abort();
-    }
-}
 
-std::vector<std::string> textfile::all_lines(void)
-{
-    char buf[LINE_MAX];
-    std::vector<std::string> out;
-    while (_file.fgets(buf, LINE_MAX) != NULL)
-        out.push_back(buf);
-    return out;
+    auto file = putil::filesystem::textfile(argv[1], 0770);
+
+    auto lines = file.convert_lines<float>(
+        12,
+        0.0f,
+        [](std::string line) { return std::stof(line); }
+    );
+
+    for (const auto& f: lines) {
+        printf("%f\n", f);
+    }
+
+    return 0;
 }

@@ -59,6 +59,11 @@ TESTSRC     += nolines.bash
 TESTSRC     += emptyline.bash
 TESTSRC     += twolines.bash
 
+LIBEXECS    += putil/filesystem/textfile/convert_lines
+SOURCES     += putil/filesystem/textfile/convert_lines.c++
+TESTSRC     += nolines.bash
+TESTSRC     += twolines.bash
+
 LIBEXECS    += putil/filesystem/lockfile/shared
 SOURCES     += putil/filesystem/lockfile/shared.c++
 TESTSRC     += shared.bash

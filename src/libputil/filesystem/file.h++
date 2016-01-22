@@ -54,7 +54,8 @@ namespace putil {
 
             /* man 3 */
             int fputs(const std::string& s);
-            
+            int feof(void);
+            char *fgets(char *s, int size);
         };
     }
 }

@@ -54,3 +54,13 @@ int file::fputs(const std::string& s)
 {
     return ::fputs(s.c_str(), _file);
 }
+
+int file::feof(void)
+{
+    return ::feof(_file);
+}
+
+char *file::fgets(char *s, int size)
+{
+    return ::fgets(s, size, _file);
+}
