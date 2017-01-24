@@ -1,6 +1,6 @@
 set -ex
 
-unix="$(echo "$0" | sed 's@/@\n@g' | tail -n2 | head -n1)"
+unix="$(echo "$0" | sed 's@/@\n@g' | tail -n1 | head -n1)"
 
 string="$(date -d @$unix)"
 
