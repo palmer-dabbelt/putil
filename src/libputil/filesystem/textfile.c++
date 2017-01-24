@@ -19,6 +19,7 @@
  */
 
 #include "textfile.h++"
+#include <stdlib.h>
 using namespace putil::filesystem;
 
 #ifndef LINE_MAX

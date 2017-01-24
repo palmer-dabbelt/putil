@@ -20,6 +20,7 @@
 
 #include "file.h++"
 #include <sys/file.h>
+#include <stdlib.h>
 using namespace putil::filesystem;
 
 

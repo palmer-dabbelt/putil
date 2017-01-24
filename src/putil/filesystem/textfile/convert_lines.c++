@@ -19,6 +19,7 @@
  */
 
 #include <libputil/filesystem/textfile.h++>
+#include <stdlib.h>
 
 int main(int argc, char **argv)
 {
