@@ -81,7 +81,6 @@ SOURCES     += libputil-chrono.pc
 LIBEXECS    += putil/chrono/datetime/unix_seconds
 COMPILEOPTS += `ppkg-config gitdate++ --cflags`
 LINKOPTS    += `ppkg-config gitdate++ --libs`
-LINKOPTS    += -lrt
 SOURCES     += putil/chrono/datetime/unix_seconds.c++
 TESTS       += 1772726757
 SOURCES     += random.bash
@@ -97,7 +96,6 @@ SOURCES     += random.bash
 LIBEXECS    += putil/chrono/datetime/now
 COMPILEOPTS += `ppkg-config gitdate++ --cflags`
 LINKOPTS    += `ppkg-config gitdate++ --libs`
-LINKOPTS    += -lrt
 SOURCES     += putil/chrono/datetime/now.c++
 TESTSRC     += now.bash
 
