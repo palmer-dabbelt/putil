@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Palmer Dabbelt
+ * Copyright (C) 2018 Palmer Dabbelt
  *   <palmer@dabbelt.com>
  *
  * This file is part of putil
@@ -18,25 +18,20 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libputil/collection.h++>
-#include <vector>
+#include <libputil/clargs.h++>
 
-int func(int i)
+int main(int argc, char **argv)
 {
-    return i+1;
-}
+    try {
+        auto parser = putil::clargs::parser(argc, argv);
+        auto input = parser.required_named_arg<std::string>({"-i", "--input"}, "input file name");
+        parser.parse();
 
-int main()
-{
-    std::vector<int> in{1, 2, 3};
-    std::vector<int> out = putil::collection::map(in, &func);
-
-    for (size_t i = 0; i < std::min(in.size(), out.size()); ++i)
-        if (in[i]+1 != out[i])
-            return 2;
-
-    if (in.size() != out.size())
-        return 3;
+        std::cout << std::to_string(input) << "\n";
+    } catch (const putil::clargs::exception &e) {
+        std::cerr << e.message() << std::endl;
+        abort();
+    }
 
     return 0;
 }

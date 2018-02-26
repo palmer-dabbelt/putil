@@ -1,24 +1,8 @@
 LANGUAGES   += h
-
-HEADERS     += libputil/filesystem.h++
-SOURCES     += libputil/filesystem.h++
-HEADERS     += libputil/filesystem/file.h++
-SOURCES     += libputil/filesystem/file.h++
-HEADERS     += libputil/filesystem/lockfile.h++
-SOURCES     += libputil/filesystem/lockfile.h++
-HEADERS     += libputil/filesystem/textfile.h++
-SOURCES     += libputil/filesystem/textfile.h++
-
-HEADERS     += libputil/chrono.h++
-SOURCES     += libputil/chrono.h++
-HEADERS     += libputil/chrono/datetime.h++
-SOURCES     += libputil/chrono/datetime.h++
-
-HEADERS     += libputil/collection.h++
-SOURCES	    += libputil/collection.h++
+CONFIG      += libputil-headers
 
 LANGUAGES   += c++
-COMPILEOPTS += -std=c++11
+COMPILEOPTS += -std=c++17
 COMPILEOPTS += -Wall
 COMPILEOPTS += -Wextra
 COMPILEOPTS += -pedantic
@@ -101,4 +85,15 @@ TESTSRC     += now.bash
 
 LIBEXECS    += putil/collection/map
 SOURCES     += putil/collection/map.c++
+TESTSRC     += test.bash
+
+# My command-line argument handling code
+LIBRARIES   += libputil-clargs.so
+SOURCES     += libputil/clargs.c++
+
+LIBRARIES   += pkgconfig/libputil-clargs.pc
+SOURCES     += libputil-clargs.pc
+
+LIBEXECS    += putil/clargs/simple
+SOURCES     += putil/clargs/simple.c++
 TESTSRC     += test.bash

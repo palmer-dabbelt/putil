@@ -18,25 +18,25 @@
  * along with putil.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libputil/collection.h++>
+#ifndef PUTIL__COLLECTION_COLLECTION_HXX
+#define PUTIL__COLLECTION_COLLECTION_HXX
+
 #include <vector>
+#include <algorithm>
+#include <functional>
 
-int func(int i)
-{
-    return i+1;
+namespace putil {
+    namespace collection {
+        /* A functional map. */
+        template <class V, typename F>
+        static inline auto map(const V& v, const F f)
+            -> std::vector<decltype(f(std::declval<typename V::value_type>()))>
+        {
+            std::vector<decltype(f(std::declval<typename V::value_type>()))> o;
+            std::transform(v.begin(), v.end(), std::back_inserter(o), f);
+            return o;
+        }
+    }
 }
 
-int main()
-{
-    std::vector<int> in{1, 2, 3};
-    std::vector<int> out = putil::collection::map(in, &func);
-
-    for (size_t i = 0; i < std::min(in.size(), out.size()); ++i)
-        if (in[i]+1 != out[i])
-            return 2;
-
-    if (in.size() != out.size())
-        return 3;
-
-    return 0;
-}
+#endif

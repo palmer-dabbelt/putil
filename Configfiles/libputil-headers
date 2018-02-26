@@ -1,0 +1,7 @@
+#!/bin/bash
+
+find src/libputil -name "*.h++" | sed 's@src/libputil@libputil@g' | while read f
+do
+    echo "HEADERS += $f"
+    echo "SOURCES += $f"
+done

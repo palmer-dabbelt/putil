@@ -1,0 +1,11 @@
+prefix=@@pconfigure_prefix@@
+exec_prefix=@@pconfigure_prefix@@
+libdir=${prefix}/@@pconfigure_libdir@@
+includedir=${prefix}/@@pconfigure_hdrdir@@
+
+Name: libputil-clargs
+Description: Palmer's command-line argument utility library
+Version: @@pconfigure_version@@
+Libs: -Wl,-rpath,${libdir} -L${libdir} -lputil-clargs
+Cflags: -I${includedir} 
+URL: http://github.com/palmer-dabbelt/putil/
