@@ -1,0 +1,45 @@
+language: c++
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - build-essential
+      - gcc-7
+      - g++-7
+
+matrix:
+  include:
+    - env: TRAVIS_CC=gcc-7     TRAVIS_CXX=g++-7
+
+before_install:
+  - export PATH="${HOME}/dependencies/install/bin:$PATH"
+  - export PKG_CONFIG_PATH="${HOME}/dependencies/install/lib/pkgconfig"
+  - export CC=$TRAVIS_CC
+  - export CXX=$TRAVIS_CXX
+  - PCONFIGURE_VERSION=0.11.10
+  - GITDATE_VERSION=0.0.3
+  - export MAKEFLAGS="-j3"
+  - export S="$(pwd)"
+  - mkdir -p "${HOME}/dependencies"
+  - cd "${HOME}/dependencies"
+  - wget "https://github.com/palmer-dabbelt/pconfigure/archive/v${PCONFIGURE_VERSION}.tar.gz" -O "${PCONFIGURE_VERSION}.tar.gz"
+  - tar -xvzpf "${PCONFIGURE_VERSION}.tar.gz"
+  - cd "pconfigure-${PCONFIGURE_VERSION}"
+  - ./bootstrap.sh --prefix "${HOME}/dependencies/install"
+  - make install
+  - cd "${HOME}/dependencies"
+  - wget "https://github.com/palmer-dabbelt/gitdate/archive/v${GITDATE_VERSION}.tar.gz" -O "${GITDATE_VERSION}.tar.gz"
+  - tar -xvzpf "${GITDATE_VERSION}.tar.gz"
+  - cd "gitdate-${GITDATE_VERSION}"
+  - pconfigure --verbose "PREFIX = ${HOME}/dependencies/install"
+  - make
+  - make install
+  - cd "${S}"
+
+script:
+  - pconfigure --verbose
+  - make
+  - make check
+  - ptest --verbose
