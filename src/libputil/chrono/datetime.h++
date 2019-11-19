@@ -39,10 +39,9 @@ namespace putil {
              * the UNIX epoch. */
             const struct timespec _ts;
 
-        private:
-            /* This is used internally to avoid loss of precision.
-             * Exposing this may expose the public API, which we don't
-             * want to do. */
+        public:
+            /* Whatever, just don't screw it up.  This should all be
+             * std::chrono now. */
             datetime(const struct timespec& ts);
 
         public:
