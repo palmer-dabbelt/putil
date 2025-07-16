@@ -17,7 +17,7 @@ namespace putil {
         /* The interface the parser has into arguments. */
         class generic_argument {
         private:
-            parser& _parser;
+            parser& _parser __attribute__((unused));
             const std::string _help;
 
         public:
@@ -25,6 +25,8 @@ namespace putil {
             : _parser(p),
               _help(help)
             {}
+
+	    virtual ~generic_argument(void) {}
 
             /* Run after parsing, returns true if all constraints on this
              * argument type were met. */
@@ -57,6 +59,8 @@ namespace putil {
               _names(n)
             {}
 
+	    virtual ~named_list_argument(void) {}
+
             virtual bool validate(void) const { return true; }
 
             virtual size_t munch(const putil::forward_iterator<std::string>& args) {
@@ -86,6 +90,8 @@ namespace putil {
             : named_list_argument<T>(p, n, h)
             {}
 
+	    virtual ~required_named_list_argument(void) {}
+
             virtual bool validate(void) const { return this->size() > 0; }
         };
 
@@ -108,6 +114,8 @@ namespace putil {
               _names(n),
               _value(nullptr)
             {}
+
+	    virtual ~named_arg_argument(void) {}
 
             virtual T value(void) { return *_value; }
             virtual bool validate(void) const { return true; }
@@ -135,6 +143,8 @@ namespace putil {
                 const std::string& h)
             : named_arg_argument<T>(p, n, h)
             {}
+
+	    virtual ~required_named_arg_argument(void) {}
 
             virtual bool validate(void) const { return this->_value != nullptr; }
         };
